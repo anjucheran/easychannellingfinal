@@ -29,7 +29,7 @@
 </head>
 
 <body>
-  <div class="image-container set-full-height" style="background-image: url('/img/medical.jpg')">
+  <div class="image-container set-full-height">
     <!--   Big container   -->
     <div class="container">
       <div class="row">
@@ -37,7 +37,7 @@
           <!--      Wizard container        -->
           <div class="wizard-container">
             <div class="card wizard-card" data-color="green" id="wizardProfile">
-              <form action="/register" method="/POST">
+              <form action="/register" method="POST">
                 <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
 
                 <div class="wizard-header">
@@ -55,7 +55,7 @@
                       <a href="#account" data-toggle="tab">Account</a>
                     </li>
                     <li>
-                      <a href="#address" data-toggle="tab">Address</a>
+                      <a href="#address" data-toggle="tab">More</a>
                     </li>
                   </ul>
                 </div>
@@ -87,13 +87,15 @@
                         </div>
                         <div class="input-group">
                           <span class="input-group-addon">
-                            <i class="material-icons">contact_phone</i>
+                            <i class="material-icons">wc</i>
                           </span>
                           <div class="form-group label-floating">
-                            <label class="control-label">Contact Number
-                              <small>(required)</small>
-                            </label>
-                            <input name="contact" type="text" class="form-control" required>
+                            <label class="control-label">Gender</label>
+                            <select name="gender" class="form-control" required>
+                              <option disabled="" selected=""></option>
+                              <option value="male"> Male </option>
+                              <option value="female"> Female </option>
+                            </select>
                           </div>
                         </div>
                       </div>
@@ -106,7 +108,7 @@
                             <label class="control-label">Email
                               <small>(required)</small>
                             </label>
-                            <input name="email" type="email" class="form-control">
+                            <input name="username" type="email" class="form-control">
                           </div>
                         </div>
                         <div class="input-group">
@@ -154,7 +156,7 @@
                       <div class="col-sm-10 col-sm-offset-1">
                         <div class="col-sm-3">
                           <div class="choice" data-toggle="wizard-radio">
-                            <input type="radio" name="usertype" value="Doctor">
+                            <input type="radio" name="usertype" value="Doctor" required>
                             <div class="icon">
                               <i class="fa fa-user-md"></i>
                             </div>
@@ -163,7 +165,7 @@
                         </div>
                         <div class="col-sm-3">
                           <div class="choice" data-toggle="wizard-radio">
-                            <input type="radio" name="usertype" value="Centre">
+                            <input type="radio" name="usertype" value="Owner" required>
                             <div class="icon">
                               <i class="fas fa-hospital-alt"></i>
                             </div>
@@ -172,7 +174,7 @@
                         </div>
                         <div class="col-sm-3">
                           <div class="choice" data-toggle="wizard-radio">
-                            <input type="radio" name="usertype" value="Operator">
+                            <input type="radio" name="usertype" value="Operator" required>
                             <div class="icon">
                               <i class="fa fa-laptop"></i>
                             </div>
@@ -181,7 +183,7 @@
                         </div>
                         <div class="col-sm-3">
                           <div class="choice" data-toggle="wizard-radio">
-                            <input type="radio" name="usertype" value="User">
+                            <input type="radio" name="usertype" value="Patient" required>
                             <div class="icon">
                               <i class="fas fa-user"></i>
                             </div>
@@ -196,48 +198,38 @@
                       <div class="col-sm-12">
                         <h4 class="info-text"> Are you living in a nice area? </h4>
                       </div>
-                      <div class="col-sm-7 col-sm-offset-1">
+                      <div class="col-sm-10 col-sm-offset-1">
                         <div class="form-group label-floating">
-                          <label class="control-label">Street Name</label>
-                          <input type="text" class="form-control">
-                        </div>
-                      </div>
-                      <div class="col-sm-3">
-                        <div class="form-group label-floating">
-                          <label class="control-label">Street Number</label>
-                          <input type="text" class="form-control">
+                          <label class="control-label">Address</label>
+                          <input type="text" name="address" class="form-control" required>
                         </div>
                       </div>
                       <div class="col-sm-5 col-sm-offset-1">
                         <div class="form-group label-floating">
                           <label class="control-label">City</label>
-                          <input type="text" class="form-control">
+                          <input type="text" name="city" class="form-control">
                         </div>
                       </div>
                       <div class="col-sm-5">
                         <div class="form-group label-floating">
-                          <label class="control-label">Country</label>
-                          <select name="country" class="form-control">
-                            <option disabled="" selected=""></option>
-                            <option value="Afghanistan"> Afghanistan </option>
-                            <option value="Albania"> Albania </option>
-                            <option value="Algeria"> Algeria </option>
-                            <option value="American Samoa"> American Samoa </option>
-                            <option value="Andorra"> Andorra </option>
-                            <option value="Angola"> Angola </option>
-                            <option value="Anguilla"> Anguilla </option>
-                            <option value="Antarctica"> Antarctica </option>
-                            <option value="...">...</option>
-                          </select>
+                          <label class="control-label">Contact Number</label>
+                          <input type="text" name="contact" class="form-control" required>
                         </div>
+                      </div>
+                    </div>
+                    <div class="row" id="slmc" style="visibility: hidden;">
+                      <div class="col-sm-5 col-sm-offset-1">
+                        <div class="form-group label-floating">
+                          <label class="control-label">SLMC Registration Number</label>
+                          <input type="text" name="slmcreg" id="slmcreg" class="form-control"></div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="wizard-footer">
                   <div class="pull-right">
-                    <input type='button' class='btn btn-next btn-fill btn-info btn-wd' name='next' value='Next' />
-                    <input type='button' class='btn btn-finish btn-fill btn-info btn-wd' name='finish' value='Finish' />
+                    <input type='button' id="btn-next" class='btn btn-next btn-fill btn-info btn-wd' name='next' value='Next' />
+                    <input type='submit' class='btn btn-finish btn-fill btn-info btn-wd' name='finish' value='Finish' />
                   </div>
 
                   <div class="pull-left">
@@ -257,6 +249,10 @@
     </div>
     <!--  big container -->
   </div>
+
+  <script>
+
+  </script>
 
 </body>
 <!--   Core JS Files   -->

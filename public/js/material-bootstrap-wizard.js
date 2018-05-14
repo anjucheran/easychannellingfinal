@@ -46,7 +46,7 @@ $(document).ready(function(){
         errorPlacement: function(error, element) {
             $(element).parent('div').addClass('has-error');
          }
-	});
+    });
 
     // Wizard Initialization
   	$('.wizard-card').bootstrapWizard({
@@ -59,7 +59,15 @@ $(document).ready(function(){
         	if(!$valid) {
         		$validator.focusInvalid();
         		return false;
-        	}
+            }
+            if($("input[name='usertype']:checked").val()==="Doctor") {
+                $('#slmc').css('visibility', 'visible');
+                $('#slmc').prop('required', true);
+            }
+            else {
+                $('#slmc').css('visibility', 'hidden');
+                $('#slmc').prop('required', false);                
+            }
         },
 
         onInit : function(tab, navigation, index){
@@ -129,6 +137,15 @@ $(document).ready(function(){
             }
 
             refreshAnimation($wizard, index);
+
+            if($("input[name='usertype']:checked").val()==="Doctor") {
+                $('#slmc').css('visibility', 'visible');
+                $('#slmc').prop('required', true);
+            }
+            else {
+                $('#slmc').css('visibility', 'hidden');
+                $('#slmc').prop('required', false);                
+            }
         }
   	});
 
@@ -143,7 +160,7 @@ $(document).ready(function(){
         wizard.find('[data-toggle="wizard-radio"]').removeClass('active');
         $(this).addClass('active');
         $(wizard).find('[type="radio"]').removeAttr('checked');
-        $(this).find('[type="radio"]').attr('checked','true');
+        $(this).find('[type="radio"]').prop('checked','true');
     });
 
     $('[data-toggle="wizard-checkbox"]').click(function(){
@@ -152,7 +169,7 @@ $(document).ready(function(){
             $(this).find('[type="checkbox"]').removeAttr('checked');
         } else {
             $(this).addClass('active');
-            $(this).find('[type="checkbox"]').attr('checked','true');
+            $(this).find('[type="checkbox"]').prop('checked','true');
         }
     });
 
