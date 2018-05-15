@@ -53,12 +53,15 @@
               <h2 style="margin-bottom: 0;">Channelling Centres</h2>
             </div>
           </div>
-          <% centres.forEach((centre) => { %>
+          <% 
+            let i = 0;
+            centres.forEach((centre) => { 
+          %>
             <div class="card">
               <div class="card-body row">
                 <div class="col-sm-8">
                   <h5 class="card-title">
-                    <a href="/owner/centre/<%= centre._id %>">
+                    <a href="/owner/centre/<%= centre._id %>" id="<%= centre.id %>-name">
                       <%=centre.name%>
                     </a>
                   </h5>
@@ -71,14 +74,39 @@
                 </div>
                 <div class="col-sm-4" style="margin: auto;">
                   <a href="" class="btn btn-primary">Edit</a>
-                  <a href="" class="btn btn-primary">Remove</a>
+                  <a style="color: white;" class="btn btn-primary" data-toggle="modal" data-target="#removeModal<%= i %>">Remove</a>
                 </div>
               </div>
             </div>
+            <!-- Sart Modal -->
+            <div class="modal fade" id="removeModal<%= i %>" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                      <i class="now-ui-icons ui-1_simple-remove"></i>
+                    </button>
+                    <h4 class="title title-up">Remove Channelling Centre</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Do you really want to remove
+                      <span id="remCentre">
+                        <%= centre.name %>
+                      </span>?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <a class="btn btn-primary" href="/centre/<%= centre.id %>/remove">Remove</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--  End Modal -->
             <% 
-        }); 
-        if(centres.length === 0) {
-      %>
+                i = i + 1;
+              }); 
+              if(centres.length === 0) {
+            %>
               <div class="card no-centre">
                 <div class="card-body" style="text-align:center;">
                   <h5 class="card-title">You haven't registered any channelling centres yet.</h5>

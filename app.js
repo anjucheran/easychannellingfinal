@@ -15,6 +15,7 @@ const Centre = require('./models/centre');
 const Operator = require('./models/operator');
 const City = require('./models/city');
 const Doctor = require('./models/doctor');
+const Schedule = require('./models/schedule');
 
 //routes
 const ownerRoutes = require('./routes/owner');
@@ -55,7 +56,7 @@ app.use('/owner',ownerRoutes);
 app.use('/centre',centreRoutes);
 
 //usertypes
-const usertypes = {'Owner': Owner,};
+const usertypes = {'Owner': Owner, 'Doctor': Doctor};
 
 //Index page
 app.get('/', (req, res) => {
@@ -82,6 +83,7 @@ app.post('/register', (req, res) => {
       console.log(user);
       let specUser = new usertypes[usertype]();
       specUser.user = user._id;
+      specUser.name = user.name;
       specUser.gender = req.body.gender;
       specUser.contact = req.body.contact;
       specUser.birthday = req.body.birthday;
@@ -114,6 +116,9 @@ app.get('/secret', (req, res) => {
   const usertype = req.user.usertype;
   if(usertype === 'Owner') {
     return res.redirect('/owner/home');
+  }
+  if(usertype === 'Doctor') {
+    return res.send('You are a doctor now!');
   }
 });
 

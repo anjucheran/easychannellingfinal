@@ -3,13 +3,14 @@ const Schema = mongoose.Schema;
 
 const Doctor = new Schema({
   user : {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  name: String,
   contact: String,
   birthday: Date,
   gender : String,
   nic : String,
   address : String,
   city : String,
-  slmaceg : String,
+  slmcreg : String,
   //category : String,
 });
 

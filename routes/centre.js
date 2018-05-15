@@ -25,11 +25,12 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 //get cities list from database
-let cities;
+let cities = void 0;
 City.find({}, (err, allCities) => {
   if(err) {
     console.log(err);
-  } else {
+  }
+  else {
     cities = allCities;
   }
 });
@@ -74,6 +75,39 @@ router.post('/', (req, res) => {
     }
   });
   res.redirect('/secret');
+});
+
+//add doctor to the centre
+router.post('/:id/doctor', (req, res) => {
+  const id = req.params.id;
+  const slmcreg = req.body.slmcreg;
+  Centre.findById(id, (err, centre) => {
+    if(err) {
+      console.log(err);
+    }
+    else {
+      Doctor.findOne({slmcreg: slmcreg}, (err, doctor) => {
+        if(err) {
+          console.log(err);
+        }
+        else {
+          centre.doctors.push(doctor._id);
+          centre.save();
+        }
+      });
+    }
+  });
+  res.redirect(`/owner/centre/${id}`);
+});
+
+// router.post('/:id/doctor/:docId', (req, res) => {
+
+// });
+
+//remove channelling centre
+router.get('/:id/remove', (req, res) => {
+  const id = req.params.id;
+  //remove from owner
 });
 
 module.exports = router;
