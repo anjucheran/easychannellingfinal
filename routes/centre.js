@@ -11,6 +11,7 @@ const Centre = require('../models/centre');
 const Operator = require('../models/operator');
 const City = require('../models/city');
 const Doctor = require('../models/doctor');
+const Schedule = require('../models/schedule');
 
 //passport configuration
 router.use(require('express-session')({
