@@ -107,8 +107,6 @@ router.post('/:id/doctor/:docId', (req, res) => {
   const start = req.body.start;
   const end = req.body.end;
   const unittime = req.body.unittime;
-  const slotsnum = end.diff(start, 'minutes')/unittime;
-  console.log(slotsnum);
   Centre.findById(id, (err, centre) => {
     if(err) {
       console.log(err);
@@ -126,7 +124,6 @@ router.post('/:id/doctor/:docId', (req, res) => {
           schedule.start = start;
           schedule.end = end;
           schedule.unittime = unittime;
-          schedule.slotsnum = slotsnum;
           schedule.save();
           res.redirect(`/owner/centre/${id}`)
         }
