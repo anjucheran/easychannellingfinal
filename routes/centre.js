@@ -34,9 +34,9 @@ router.get('/new', (req, res) => {
     }
     else {
       cities = allCities;
+      res.render('newCentre', { cities: cities });
     }
   });
-  res.render('newCentre', { cities: cities });
 });
 
 //new centre post
