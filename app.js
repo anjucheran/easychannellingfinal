@@ -22,7 +22,7 @@ const ownerRoutes = require('./routes/owner');
 const centreRoutes = require('./routes/centre');
 
 //database connectivity
-mongoose.connect('mongodb://localhost/easychannelling');
+mongoose.connect('mongodb://user:user@ds119080.mlab.com:19080/easychanneling');
 
 //passport configuration
 app.use(require('express-session')({
@@ -129,4 +129,4 @@ app.get('/logout', (req, res) => {
 });
 
 // App will be served in localhost:3000
-app.listen(3000, () => console.log('App listening on port 3000!'));
+app.listen(process.env.PORT || 3000, () => console.log('App listening on port 3000!'));
