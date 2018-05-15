@@ -24,20 +24,19 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-//get cities list from database
-let cities = void 0;
-City.find({}, (err, allCities) => {
-  if(err) {
-    console.log(err);
-  }
-  else {
-    cities = allCities;
-  }
-});
-
 //new centre form
 router.get('/new', (req, res) => {
-  res.render('newCentre', {cities: cities});
+  //get cities list from database
+  let cities = void 0;
+  City.find({}, (err, allCities) => {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      cities = allCities;
+    }
+  });
+  res.render('newCentre', { cities: cities });
 });
 
 //new centre post
@@ -57,8 +56,8 @@ router.post('/', (req, res) => {
   centre.contact = contact;
   centre.save();
   //add centre to city
-  City.findOne({name: city}, (err, city) => {
-    if(err) {
+  City.findOne({ name: city }, (err, city) => {
+    if (err) {
       console.log(err);
     } else {
       city.centres.push(centre._id);
@@ -66,8 +65,8 @@ router.post('/', (req, res) => {
     }
   });
   //add centre to owner
-  Owner.findOne({user: id}, (err, owner) => {
-    if(err) {
+  Owner.findOne({ user: id }, (err, owner) => {
+    if (err) {
       console.log(err);
     } else {
       owner.centres.push(centre._id);
@@ -82,12 +81,12 @@ router.post('/:id/doctor', (req, res) => {
   const id = req.params.id;
   const slmcreg = req.body.slmcreg;
   Centre.findById(id, (err, centre) => {
-    if(err) {
+    if (err) {
       console.log(err);
     }
     else {
-      Doctor.findOne({slmcreg: slmcreg}, (err, doctor) => {
-        if(err) {
+      Doctor.findOne({ slmcreg: slmcreg }, (err, doctor) => {
+        if (err) {
           console.log(err);
         }
         else {
