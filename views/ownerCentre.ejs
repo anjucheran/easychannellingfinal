@@ -56,6 +56,7 @@
                     </tr>                    
                   </thead>
                   <tbody>
+                    <% schedules.forEach((schedule) => { %>
                       <tr>
                         <th><%= schedule.doctor.name %></th>
                         <td><%= schedule.date %></td>
@@ -63,6 +64,7 @@
                         <td><%= schedule.end %></td>
                         <td><%= schedule.unittime %></td>
                       </tr>
+                    <% }); %>
                   </tbody>
                 </table>
               </div>
