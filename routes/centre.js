@@ -99,9 +99,40 @@ router.post('/:id/doctor', (req, res) => {
   res.redirect(`/owner/centre/${id}`);
 });
 
-// router.post('/:id/doctor/:docId', (req, res) => {
-
-// });
+//add apointment to doctor
+router.post('/:id/doctor/:docId', (req, res) => {
+  const id = req.params.id;
+  const docId = req.params.docId;
+  const date = req.body.date;
+  const start = req.body.start;
+  const end = req.body.end;
+  const unittime = req.body.unittime;
+  const slotsnum = end.diff(start, 'minutes');
+  Centre.findById(id, (err, centre) => {
+    if(err) {
+      console.log(err);
+    }
+    else {
+      Doctor.findById(docId, (err, doctor) => {
+        if(err) {
+          console.log(err);
+        }
+        else {
+          let schedule = new Schedule();
+          schedule.centre = id;
+          schedule.doctor = docId;
+          schedule.date = date;
+          schedule.start = start;
+          schedule.end = end;
+          schedule.unittime = unittime;
+          schedule.slotsnum = slotsnum;
+          schedule.save();
+          res.redirect(`/owner/centre/${id}`)
+        }
+      });
+    }
+  });
+});
 
 //remove channelling centre
 router.get('/:id/remove', (req, res) => {

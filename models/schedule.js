@@ -6,6 +6,7 @@ const Schedule = new Schema({
   end : String,
   date : Date,
   unittime : String,
+  slotsnum : Number,
   doctor : {type: mongoose.Schema.Types.ObjectId, ref: 'Doctor'},
   centre : {type: mongoose.Schema.Types.ObjectId, ref: 'Centre'},
   pending: {type: Boolean, default: false},
