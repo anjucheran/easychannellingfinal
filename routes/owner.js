@@ -59,7 +59,7 @@ router.get('/centre/:id', (req, res) => {
             }
             else {
               res.render('ownerCentre', { name: centre.name, doctors: centre.doctors, operators: centre.operators, 
-                pendings: pendings, schedules: schedules, id: id });
+                schedules: schedules, id: id });
             }
           });
         }

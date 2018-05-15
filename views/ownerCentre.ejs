@@ -56,22 +56,20 @@
                     </tr>                    
                   </thead>
                   <tbody>
-                    <% schedule.forEach((schedule) => { %>
                       <tr>
-                        <th>schedule.doctor.name</th>
-                        <td>schedule.date</td>
-                        <td>schedule.start</td>
-                        <td>schedule.end</td>
-                        <td>schedule.unittime</td>
+                        <th><%= schedule.doctor.name %></th>
+                        <td><%= schedule.date %></td>
+                        <td><%= schedule.start %></td>
+                        <td><%= schedule.end %></td>
+                        <td><%= schedule.unittime %></td>
                       </tr>
-                    <% }); %>
                   </tbody>
                 </table>
               </div>
             </div>
         </div>
             <div class="row">
-          <% } %>
+          <% } 
             if(operators.length === 0 && doctors.length !== 0) {
           %>
             <div class="col-sm-6">
@@ -138,7 +136,7 @@
           } 
           if(doctors.length === 0) {
         %>
-          <div class="card no-centre">
+          <div class="card no-centre" style="flex: 1;">
             <div class="card-body" style="text-align:center;">
               <h5 class="card-title">
                 <%= name %> does not have any doctors yet.</h5>
@@ -157,5 +155,6 @@
       </div>
       </div>
       </div>
+    </div>
 
       <% include partials/footer %>
